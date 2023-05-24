@@ -1,27 +1,7 @@
 package org.java.main.obj;
 
-public class Song {
-	private int id;
-	private String title;
-	
-	public Song(int id , String title) {
-		setId(id);
-		setTitle(title);
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
+public class Song extends Resource {
+	public Song(int id, String title) {
+		super(id, title);
 	}
 }
