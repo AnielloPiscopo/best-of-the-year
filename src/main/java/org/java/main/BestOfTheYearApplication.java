@@ -9,5 +9,4 @@ public class BestOfTheYearApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BestOfTheYearApplication.class, args);
 	}
-
 }
