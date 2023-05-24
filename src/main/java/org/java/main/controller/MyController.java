@@ -1,46 +1,55 @@
 package org.java.main.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.java.main.obj.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/prova")
+@RequestMapping("/resources")
 public class MyController {
-
-	@GetMapping("/")
-	@ResponseBody
-	public String sayHello() {
-		
-		return "<h1>Prova!</h1>";
-	}
 	
-	@GetMapping("/ciao")
-	@ResponseBody
-	public String sayHelloIta() {
-		
-		return "<h1>Ciao, Mondo!</h1>";
-	}
-	
-	@GetMapping("/hola")
-	public String sayHelloSp(Model model,
+	@GetMapping("/best")
+	public String printMessage(Model model,
 			@RequestParam(name = "name") String name) {
-		
 		model.addAttribute("name", name);
 		
 		return "index";
 	}
 	
-	@GetMapping("/user/{id}")
-	public String sayHelloToId(Model model,
-			@PathVariable("id") int id) {
+	private List<Movie> getBestMovies(){
+		List<Movie> bestMoviesList = new ArrayList<>();
+		String[] bestMovies = {"asd" , "as" , "asdd"};
+		int bestMoviesLng = bestMovies.length;
+		for(int i=0 ; i<bestMoviesLng ; i++) {
+			Movie m = new Movie(i+1 , bestMovies[i]);
+			bestMoviesList.add(m);
+		}
 		
-		model.addAttribute("name", "Guybrush " + id);
+		return bestMoviesList;
+	}
+	
+	private String getMoviesTitle(List<Movie> moviesList) {
+		int bestMoviesListLng = moviesList.size();
+		String bestMoviesTitles = "";
+		for(int i=0 ; i<bestMoviesListLng; i++) {
+			bestMoviesTitles += moviesList.get(i).getTitle() + " , "; 
+		}
+		return bestMoviesTitles;
+	}
+//	private List<Song> getBestSongs(){}
+	
+	@GetMapping("/movies")
+	public String showBestMovies(Model model) {
+		String bestMoviesTitle = getMoviesTitle(getBestMovies());
+		model.addAttribute("movies" , bestMoviesTitle);
 		
-		return "index";
+		return "movies";
 	}
 }
