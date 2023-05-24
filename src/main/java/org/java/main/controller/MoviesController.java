@@ -55,16 +55,18 @@ public class MoviesController {
 	@GetMapping("/movies")
 	public String showBestMovies(Model model) {
 		String bestMoviesTitle = getMoviesTitle(getBestMovies());
-		model.addAttribute("movies" , bestMoviesTitle);
+		model.addAttribute("resources" , bestMoviesTitle);
+		model.addAttribute("type" , "movies");
 		
-		return "movies";
+		return "resources";
 	}
 	
 	@GetMapping("/movies/{id}")
 	public String showBestMovie(Model model , @PathVariable("id") int id) {
 		String selectedMovieTitle = getMovie(getBestMovies(),id-1).getTitle();
-		model.addAttribute("movies" , selectedMovieTitle);
+		model.addAttribute("resources" , selectedMovieTitle);
+		model.addAttribute("type" , "movies");
 		
-		return "movies";
+		return "resources";
 	}
 }
