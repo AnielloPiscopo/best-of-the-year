@@ -9,7 +9,7 @@
     />
   </head>
   <body th:object="${resource}">
-    <th:block th:replace="frag/header.html :: header"></th:block>
+    <th:block th:replace="~{frag/header :: header}"></th:block>
 
     <main>
       <div class="container-fluid">

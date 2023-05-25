@@ -10,10 +10,11 @@
   </head>
   <body th:object="${resources}">
     <!-- <h1 th:text="'Best ' + ${type} + ': ' + ${resources}"></h1> -->
-    <th:block th:replace="frag/header.html :: header"></th:block>
 
     <main>
       <div class="container-fluid">
+        <th:block th:replace="~{frag/header :: header}"></th:block>
+
         <h1>Best [[${#strings.capitalize(type)}]]</h1>
         <ul>
           <li th:each="resource : ${resources}">

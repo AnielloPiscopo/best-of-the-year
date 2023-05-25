@@ -1,15 +1,15 @@
 <header th:fragment="header">
   <div class="container-fluid">
-    <nav class="d-flex">
+    <nav class="d-flex border-1">
       <div class="container-fluid">
-        <span>Best of</span>
+        <span class="p-5 border">Best of</span>
       </div>
 
-      <ul>
-        <li>
+      <ul class="d-flex">
+        <li class="p-5">
           <a th:href="@{/movies}">Movies</a>
         </li>
-        <li>
+        <li class="p-5">
           <a th:href="@{/songs}">Songs</a>
         </li>
       </ul>

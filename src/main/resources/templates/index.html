@@ -5,6 +5,15 @@
     <title>Best of the year</title>
   </head>
   <body>
-    <h1>[['Best of the year by ' + ${name}]]</h1>
+    <th:block th:replace="~{frag/header :: header}"></th:block>
+    <main>
+      <div class="container-fluid">
+        <h1>Best of</h1>
+        <div class="container-fluid">
+          <div class="container-fluid">image</div>
+          <div class="container-fluid">[[${name}]]</div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
