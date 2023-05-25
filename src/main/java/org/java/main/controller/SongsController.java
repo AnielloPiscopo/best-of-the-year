@@ -3,7 +3,7 @@ package org.java.main.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.java.main.obj.*;
+import org.java.main.pojo.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/resources")
+@RequestMapping("/")
 public class SongsController {
 	private List<Song> bestSongsList = new ArrayList<>();
 	
@@ -30,15 +30,15 @@ public class SongsController {
 		return bestSongsList;
 	}
 	
-	private String getSongsTitle(List<Song> songs) {
-		int songsLng = songs.size();
-		String songsTitles = "";
-		for(int i=0 ; i<songsLng; i++) {
-			songsTitles += songs.get(i).getTitle()
-					+ ((i == songsLng-1) ? "." : " , "); 
-		}
-		return songsTitles;
-	}
+//	private String getSongsTitle(List<Song> songs) {
+//		int songsLng = songs.size();
+//		String songsTitles = "";
+//		for(int i=0 ; i<songsLng; i++) {
+//			songsTitles += songs.get(i).getTitle()
+//					+ ((i == songsLng-1) ? "." : " , "); 
+//		}
+//		return songsTitles;
+//	}
 	
 	private Song getSong(List<Song> songs , int id) {
 		Song selectedSong = null ;
@@ -54,8 +54,8 @@ public class SongsController {
 	
 	@GetMapping("/songs")
 	public String showBestMovies(Model model) {
-		String bestSongsTitle = getSongsTitle(getBestSongs());
-		model.addAttribute("resources" , bestSongsTitle);
+		List<Song> bestSongs = getBestSongs();
+		model.addAttribute("resources" , bestSongs);
 		model.addAttribute("type" , "songs");
 		
 		return "resources";
@@ -63,10 +63,10 @@ public class SongsController {
 	
 	@GetMapping("/songs/{id}")
 	public String showBestMovie(Model model , @PathVariable("id") int id) {
-		String selecteSongTitle = getSong(getBestSongs(),id-1).getTitle();
-		model.addAttribute("resources" , selecteSongTitle);
-		model.addAttribute("type" , "songs");
+		Song selecteSong = getSong(getBestSongs(),id-1);
+		model.addAttribute("resource" , selecteSong);
+		model.addAttribute("type" , "song");
 		
-		return "resources";
+		return "resource";
 	}
 }

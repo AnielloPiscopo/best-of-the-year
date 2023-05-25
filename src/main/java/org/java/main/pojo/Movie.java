@@ -1,4 +1,4 @@
-package org.java.main.obj;
+package org.java.main.pojo;
 
 public class Movie extends Resource {
 	public Movie(int id, String title) {

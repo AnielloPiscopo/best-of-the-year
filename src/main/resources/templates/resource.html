@@ -8,20 +8,13 @@
       th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"
     />
   </head>
-  <body th:object="${resources}">
-    <!-- <h1 th:text="'Best ' + ${type} + ': ' + ${resources}"></h1> -->
+  <body th:object="${resource}">
     <th:block th:replace="frag/header.html :: header"></th:block>
 
     <main>
       <div class="container-fluid">
-        <h1>Best [[${#strings.capitalize(type)}]]</h1>
-        <ul>
-          <li th:each="resource : ${resources}">
-            <a th:href="@{/{type}/{id} (id=${resource.id} , type=${type})}"
-              >[[${resource.title}]]</a
-            >
-          </li>
-        </ul>
+        <h1>Selected [[${type}]]</h1>
+        <div>[[${resource}]]</div>
       </div>
     </main>
   </body>

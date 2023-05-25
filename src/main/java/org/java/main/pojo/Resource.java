@@ -1,4 +1,4 @@
-package org.java.main.obj;
+package org.java.main.pojo;
 
 public class Resource {
 	private int id;
@@ -23,5 +23,16 @@ public class Resource {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getInfo() {
+		return "Id: " + getId()
+			+ "\n" + "Title: "  + getTitle();
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getInfo();
 	}
 }

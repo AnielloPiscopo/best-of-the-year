@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/resources")
+@RequestMapping("/")
 public class MyController {
 	@GetMapping("/best")
 	public String printMessage(Model model,

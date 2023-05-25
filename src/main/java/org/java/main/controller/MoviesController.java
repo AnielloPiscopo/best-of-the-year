@@ -3,7 +3,7 @@ package org.java.main.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.java.main.obj.*;
+import org.java.main.pojo.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/resources")
+@RequestMapping("/")
 public class MoviesController {
 	private List<Movie> bestMoviesList = new ArrayList<>();
 	
@@ -30,15 +30,15 @@ public class MoviesController {
 		return bestMoviesList;
 	}
 	
-	private String getMoviesTitle(List<Movie> movies) {
-		int moviesLng = movies.size();
-		String moviesTitles = "";
-		for(int i=0 ; i<moviesLng; i++) {
-			moviesTitles += movies.get(i).getTitle()
-					+ ((i == moviesLng-1) ? "." : " , "); 
-		}
-		return moviesTitles;
-	}
+//	private String getMoviesTitle(List<Movie> movies) {
+//		int moviesLng = movies.size();
+//		String moviesTitles = "";
+//		for(int i=0 ; i<moviesLng; i++) {
+//			moviesTitles += movies.get(i).getTitle()
+//					+ ((i == moviesLng-1) ? "." : " , "); 
+//		}
+//		return moviesTitles;
+//	}
 	
 	private Movie getMovie(List<Movie> movies , int id) {
 		Movie selectedMovie = null ;
@@ -54,8 +54,8 @@ public class MoviesController {
 	
 	@GetMapping("/movies")
 	public String showBestMovies(Model model) {
-		String bestMoviesTitle = getMoviesTitle(getBestMovies());
-		model.addAttribute("resources" , bestMoviesTitle);
+		List<Movie> bestMovies = getBestMovies();
+		model.addAttribute("resources" , bestMovies);
 		model.addAttribute("type" , "movies");
 		
 		return "resources";
@@ -63,10 +63,10 @@ public class MoviesController {
 	
 	@GetMapping("/movies/{id}")
 	public String showBestMovie(Model model , @PathVariable("id") int id) {
-		String selectedMovieTitle = getMovie(getBestMovies(),id-1).getTitle();
-		model.addAttribute("resources" , selectedMovieTitle);
-		model.addAttribute("type" , "movies");
+		Movie selectedMovie = getMovie(getBestMovies(),id-1);
+		model.addAttribute("resource" , selectedMovie);
+		model.addAttribute("type" , "movie");
 		
-		return "resources";
+		return "resource";
 	}
 }
